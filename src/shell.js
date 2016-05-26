@@ -22,6 +22,9 @@ export class Shell {
             },  {
                 route: 'discussion', moduleId: 'discussion/discussion'
                 , title: 'Discussion', nav: true
+            }, {
+                route: 'eventDetail/:eventId', moduleId: 'events/eventDetail'
+                , name: 'eventDetail'
             }
         ]);
 

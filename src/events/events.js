@@ -1,21 +1,19 @@
-import {DataCache} from 'dataCache';
 import {inject, Lazy, All} from 'aurelia-framework';
-import {ImLazy} from 'ImLazy';
+import {DataRepository} from 'services/dataRepository';
+import {Router} from 'aurelia-router';
 
-@inject(DataCache, Lazy.of(ImLazy), All.of('SuperPlugIn'))
+@inject(DataRepository, Router)
 export class Events {
-    constructor(dataCache, lazyOfImLazy, plugins) {
-        this.events = [
-            {id: 1, title: 'Aurelia Fundamentals'},
-            {id: 2, title: 'Data-Centric SPAs with BreezeJS'}
-        ];
-        this.cache = dataCache;
-        this.cache.data.push('a');
-        this.lazyOfImLazy = lazyOfImLazy;
-
-        plugins.forEach(function(aPlugIn){
-            aPlugIn.doPlugInStuff();
+    constructor(dataRepository, router){
+        dataRepository.getEvents().then(events => {
+            this.events = events;
+            this.events.forEach(item => {
+                item.detailUrl = router.generate('eventDetail', { eventId: item.id });
+            });
         });
+    }
+
+    activate(params, routeConfig, navigationInstruction){
     }
 
     createAndUseLazy() {
