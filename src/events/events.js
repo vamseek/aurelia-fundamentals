@@ -13,7 +13,7 @@ export class EventsList {
     }
 
     activate(params, routeConfig, navigationInstruction){
-        this.dataRepository.getEvents().then(events => {
+        return this.dataRepository.getEvents().then(events => {
             if(params.speaker || params.topic){
                 var filteredResults = [];
                 let speaker = params.speaker && params.speaker.toLowerCase();
