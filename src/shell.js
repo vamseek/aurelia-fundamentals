@@ -10,20 +10,33 @@ export class Shell {
         config.map([
             {
                 route: ['', 'events'],
-                moduleId: 'events/events', name: 'Events',
+                viewPorts: {
+                    mainContent: {moduleId: 'events/events'},
+                    sideBar: {moduleId: 'sideBar/sponsors'}
+                },
+                name: 'Events',
                 title: 'Events listing', nav: true
             },
             {
-                route: ['sponsors'],
-                moduleId: 'sponsors/sponsors'
-            }, {
-                route: 'jobs', moduleId: 'jobs/jobs'
+                route: 'jobs',
+                viewPorts: {
+                    mainContent: {moduleId: 'jobs/jobs'},
+                    sideBar: {moduleId: 'sideBar/sponsors'}
+                }
                 , title: 'Jobs listing', nav: true
             },  {
-                route: 'discussion', moduleId: 'discussion/discussion'
+                route: 'discussion',
+                viewPorts: {
+                    mainContent: {moduleId: 'discussion/discussion'},
+                    sideBar: {moduleId: 'sideBar/ads'}
+                }
                 , title: 'Discussion', nav: true
             }, {
-                route: 'eventDetail/:eventId', moduleId: 'events/eventDetail'
+                route: 'eventDetail/:eventId',
+                viewPorts: {
+                    mainContent: {moduleId: 'events/eventDetail'},
+                    sideBar: {moduleId: 'sideBar/ads'}
+                }
                 , name: 'eventDetail'
             }
         ]);
