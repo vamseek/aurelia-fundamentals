@@ -1,3 +1,5 @@
+import toastr from 'toastr';
+
 export class Shell {
 	constructor(){
 
@@ -7,6 +9,8 @@ export class Shell {
         this.router = router;
         // the title is displayed in the browser title bar
         config.title = 'This is the shell!';
+        config.addPipelineStep('modelbind', ToastNavResult);
+        // config.options.pushState = true;
         config.map([
             {
                 route: ['', 'events'],
@@ -43,3 +47,12 @@ export class Shell {
 
     }
 }
+
+class ToastNavResult {
+    run(navigationInstruction, next){
+        return next().then(a => { toastr.info(a.status); return a; });
+    }
+}
+
+
+

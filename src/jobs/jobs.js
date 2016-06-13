@@ -6,7 +6,8 @@ export class Jobs{
         let promise = new Promise((resolve, reject) => {
             setTimeout(_ => {
                 resolve(false);
-            }, 3000);
+                // reject('failed');
+            }, 2000);
         });
         return promise;
     }
