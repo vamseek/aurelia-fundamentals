@@ -19,5 +19,19 @@ export var eventsData = [
         'title': 'How to be your best!',
         'speaker': 'Robin Sharma',
         'dateTime': '2016-06-03T04:00:00.000Z'
+    },
+    {
+        'id': 137,
+        'description': 'Basics of linear algebra from the master himself!',
+        'title': 'Introduction to Linear Algebra',
+        'speaker': 'Gilbert Strang',
+        'dateTime': '2016-05-03T04:00:00.000Z'
+    },
+    {
+        'id': 138,
+        'description': 'Smarter and faster',
+        'title': 'How to get more done!',
+        'speaker': 'Charles Duhigg',
+        'dateTime': '2016-05-04T04:00:00.000Z'
     }
 ];

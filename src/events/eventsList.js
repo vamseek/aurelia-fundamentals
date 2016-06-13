@@ -1,6 +1,6 @@
 import {inject, Lazy, All} from 'aurelia-framework';
 import {DataRepository} from 'services/dataRepository';
-import {Router} from 'aurelia-router';
+import {Router, activationStrategy} from 'aurelia-router';
 
 @inject(DataRepository, Router)
 export class EventsList {
@@ -10,10 +10,14 @@ export class EventsList {
         if(!router){
             throw 'router must be injected';
         }
+
+        console.log('EventsList: ctor');
     }
 
     activate(params, routeConfig, navigationInstruction){
-        return this.dataRepository.getEvents().then(events => {
+        let pastOrFuture = routeConfig.name == '' ? 'future': routeConfig.name;
+        console.log(`activate: ${pastOrFuture}`);
+        return this.dataRepository.getEvents(pastOrFuture).then(events => {
             if(params.speaker || params.topic){
                 var filteredResults = [];
                 let speaker = params.speaker && params.speaker.toLowerCase();
@@ -44,5 +48,24 @@ export class EventsList {
         this.lazyOfImLazy().doStuff();
         console.log('again...');
         this.lazyOfImLazy().doStuff();
+    }
+
+    canActivate() {
+        console.log('EventsList: canActivate');
+        return true;
+    }
+
+    canDeactivate() {
+        console.log('EventsList: canDeactivate');
+        return true;
+    }
+
+    deactivate(){
+        console.log('EventsList: deactivate');
+    }
+
+    determineActivationStrategy(){
+        console.log('EventsList: determineActivationStrategy');
+        return activationStrategy.invokeLifecycle;
     }
 }

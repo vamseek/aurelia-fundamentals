@@ -8,12 +8,14 @@ export class Events {
                 , moduleId: 'events/eventsList'
                 , title: 'Future Events'
                 , nav: true
+                , name: 'future'
             }, {
                 route: 'past'
-                , moduleId: 'events/past'
+                , moduleId: 'events/eventsList'
                 , title: 'Past Events'
                 , nav: true
                 , href: '#/events/past'
+                , name: 'past'
             }
         ]);
     }
